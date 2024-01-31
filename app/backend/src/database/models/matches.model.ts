@@ -1,6 +1,7 @@
 import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 import db from './index';
 import { Match } from '../../types/Match';
+import TeamModel from './teams.model';
 
 export type MatchInputtableFields = Optional<Match, 'id'>;
 
@@ -19,5 +20,8 @@ const MatchModel: MatchSequelizeModelCreator = db.define('Match', {
   timestamps: false,
   underscored: true,
 });
+
+MatchModel.belongsTo(TeamModel, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+MatchModel.belongsTo(TeamModel, { foreignKey: 'awayTeamId', as: 'awayTeam' });
 
 export default MatchModel;
