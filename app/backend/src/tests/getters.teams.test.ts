@@ -23,12 +23,23 @@ describe('GET /teams', function () {
     expect(response.body).to.eql(teamsMock.teamsMock);
   });
 
-  it('Busca um time pelo id com sucesso', async function () {
-    const mockBuild = TeamModel.build(teamsMock.teamMock);
-    sinon.stub(TeamModel, 'findOne').resolves(mockBuild);
-    const response = await chai.request(app).get(`/teams/${teamsMock.teamMock.id}`).send();
+  describe('GET /teams/:id', function () {
+    it('Busca um time com sucesso', async function () {
+      const mockBuild = TeamModel.build(teamsMock.teamMock);
+      sinon.stub(TeamModel, 'findOne').resolves(mockBuild);
+      const response = await chai.request(app).get(`/teams/${teamsMock.teamMock.id}`).send();
+  
+      expect(response.status).to.equal(200);
+      expect(response.body).to.eql(teamsMock.teamMock);
+    });
+  
+    it('Retorna um erro se não encontra um time', async function () {
+      sinon.stub(TeamModel, 'findOne').resolves(null);
+      const response = await chai.request(app).get(`/teams/${99}`).send();
 
-    expect(response.status).to.equal(200);
-    expect(response.body).to.eql(teamsMock.teamMock);
-  });
+      expect(response.status).to.equal(404);
+      expect(response.body).to.eql({ message: 'Time não encontrado' });
+    });
+  })
+
 });

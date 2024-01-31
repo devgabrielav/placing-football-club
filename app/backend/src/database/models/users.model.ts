@@ -15,7 +15,7 @@ const UserModel: UserSequelizeModelCreator = db.define('User', {
   password: DataTypes.STRING,
 }, {
   tableName: 'users',
-  timestamps: true,
+  timestamps: false,
   underscored: false,
 });
 
