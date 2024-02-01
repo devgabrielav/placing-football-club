@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import teamsMock from './mocks/teams.mock';
-import TeamModel from '../../src/database/models/teams.model';
+import TeamModel from '../database/models/teams.model';
 
 chai.use(chaiHttp);
 

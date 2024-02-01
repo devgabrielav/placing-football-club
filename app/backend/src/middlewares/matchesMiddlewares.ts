@@ -10,6 +10,17 @@ const hasRequiredKeys: RequestHandler = (req, res, next) => {
   next();
 };
 
+const hasAllKeys: RequestHandler = (req, res, next) => {
+  const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+
+  if (!homeTeamId || !awayTeamId || !homeTeamGoals || !awayTeamGoals) {
+    return res.status(400).json({ message: 'Missing required fields!' });
+  }
+
+  next();
+};
+
 export default {
   hasRequiredKeys,
+  hasAllKeys,
 };

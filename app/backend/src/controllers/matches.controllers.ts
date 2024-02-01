@@ -5,7 +5,12 @@ import httpMapStatus from '../utils/httpMapStatus';
 async function getAll(req: Request, res: Response) {
   const { inProgress } = req.query;
 
-  const { status, data } = await matchesServices.getAllMatches(inProgress as string | undefined);
+  if (inProgress) {
+    const { status, data } = await matchesServices.filteredMatches(inProgress as string);
+    const code = httpMapStatus(status);
+    res.status(code).json(data);
+  }
+  const { status, data } = await matchesServices.getAllMatches();
   const code = httpMapStatus(status);
 
   res.status(code).json(data);
@@ -31,8 +36,19 @@ async function updateMatchGoals(req: Request, res: Response) {
   res.status(code).json(data);
 }
 
+async function addNew(req: Request, res: Response) {
+  const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+
+  const { status, data } = await matchesServices
+    .addNewMatch({ homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals });
+  const code = httpMapStatus(status);
+
+  res.status(code).json(data);
+}
+
 export default {
   getAll,
   updateMatchProgress,
   updateMatchGoals,
+  addNew,
 };

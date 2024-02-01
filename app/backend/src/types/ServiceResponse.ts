@@ -1,4 +1,4 @@
-type ServiceResponseErrorType = 'invalidData' | 'unauthorized' | 'notFound';
+type ServiceResponseErrorType = 'invalidData' | 'unauthorized' | 'notFound' | 'unprocessable';
 
 export type ServiceResponseError = {
   status: ServiceResponseErrorType,

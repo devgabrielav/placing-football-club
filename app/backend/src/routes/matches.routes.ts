@@ -7,10 +7,24 @@ const router = Router();
 
 router.get('/', matchesControllers.getAll);
 
-router.use(tokenMiddlewares.authMiddleware);
+router.patch(
+  '/:id/finish',
+  tokenMiddlewares.authMiddleware,
+  matchesControllers.updateMatchProgress,
+);
 
-router.patch('/:id/finish', matchesControllers.updateMatchProgress);
+router.patch(
+  '/:id',
+  tokenMiddlewares.authMiddleware,
+  matchesMiddlewares.hasRequiredKeys,
+  matchesControllers.updateMatchGoals,
+);
 
-router.patch('/:id', matchesMiddlewares.hasRequiredKeys, matchesControllers.updateMatchGoals);
+router.post(
+  '/',
+  tokenMiddlewares.authMiddleware,
+  matchesMiddlewares.hasAllKeys,
+  matchesControllers.addNew,
+);
 
 export default router;
