@@ -33,3 +33,5 @@ export type GoalsType = {
   favor: number,
   own: number,
 };
+
+export type FromType = 'home' | 'away';
