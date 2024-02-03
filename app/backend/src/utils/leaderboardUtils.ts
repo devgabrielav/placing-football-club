@@ -106,11 +106,11 @@ const sortTeams = (teams: LeaderBoardType[]): LeaderBoardType[] => {
   return sorted;
 };
 
-const leaderBoardResults = async (
+const leaderBoardResults = (
   teams: TeamSequelizeModel[],
   matches: MatchSequelizeModel[],
   from: FromType,
-): Promise<LeaderBoardType[]> => {
+): LeaderBoardType[] => {
   const finishedMatches = matches.filter((match) => match.dataValues.inProgress === false);
 
   const leaderBoardTeams = teams.map((team) => {
@@ -126,4 +126,6 @@ const leaderBoardResults = async (
 
 export default {
   leaderBoardResults,
+  sortTeams,
+  efficiencyCalculator,
 };

@@ -16,7 +16,15 @@ async function getAwayTeamsPerfomances(_req: Request, res: Response) {
   res.status(code).json(data);
 }
 
+async function getGeneralTeamsPerfomances(_req: Request, res: Response) {
+  const { status, data } = await leaderboardServices.getAllTeamsPerfomance('home', 'away');
+  const code = httpMapStatus(status);
+
+  res.status(code).json(data);
+}
+
 export default {
   getHomeTeamsPerfomances,
   getAwayTeamsPerfomances,
+  getGeneralTeamsPerfomances,
 };

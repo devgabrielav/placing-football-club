@@ -10,7 +10,7 @@ const hasRequiredKeys: RequestHandler = (req, res, next) => {
   next();
 };
 
-const hasAllKeys: RequestHandler = (req, res, next) => {
+/* const hasAllKeys: RequestHandler = (req, res, next) => {
   const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
 
   if (!homeTeamId || !awayTeamId || !homeTeamGoals || !awayTeamGoals) {
@@ -19,8 +19,7 @@ const hasAllKeys: RequestHandler = (req, res, next) => {
 
   next();
 };
-
+ */
 export default {
   hasRequiredKeys,
-  hasAllKeys,
 };

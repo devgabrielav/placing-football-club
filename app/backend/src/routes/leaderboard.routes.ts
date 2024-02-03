@@ -7,4 +7,6 @@ router.get('/home', leaderboardController.getHomeTeamsPerfomances);
 
 router.get('/away', leaderboardController.getAwayTeamsPerfomances);
 
+router.get('/', leaderboardController.getGeneralTeamsPerfomances);
+
 export default router;

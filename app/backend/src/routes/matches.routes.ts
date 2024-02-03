@@ -23,7 +23,6 @@ router.patch(
 router.post(
   '/',
   tokenMiddlewares.authMiddleware,
-  matchesMiddlewares.hasAllKeys,
   matchesControllers.addNew,
 );
 
