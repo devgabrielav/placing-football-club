@@ -24,6 +24,7 @@ This project is run locally with Docker, you will need Docker installed and conf
 ```bash
 cd placing-football-club
 npm install
+npm run install:apps
 npm run compose:up
 npm run db:reset
 ```
