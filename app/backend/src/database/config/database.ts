@@ -3,8 +3,8 @@ import { parse } from 'pg-connection-string';
 
 let config: Options;
 
-if (process.env.MYSQL_URL) {
-  const params = parse(process.env.MYSQL_URL);
+if (process.env.MYSQL_DATABASE) {
+  const params = parse(process.env.MYSQL_DATABASE);
   config = {
     username: params.user || '',
     password: params.password,
